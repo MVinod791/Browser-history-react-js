@@ -13,10 +13,6 @@ class SearchHistory extends Component {
     this.setState({searchInput: event.target.value})
   }
 
-  onUpdatedList = value => {
-    this.setState({searchInput: value})
-  }
-
   onDeleteHistory = () => {}
 
   render() {
@@ -42,23 +38,25 @@ class SearchHistory extends Component {
 
             <input
               value={searchInput}
-              type="text"
+              type="search"
               className="input-search"
               placeholder="Search History"
               onChange={this.onChangeSearchHistory}
             />
           </div>
         </div>
-        <div className="search-history-container">
-          <ul className="list-container">
-            {searchResult.map(eachItem => (
-              <HistoryItem
-                initialHistoryList={eachItem}
-                deletHistory={this.onDeleteHistory}
-                updateList={this.onUpdatedList}
-              />
-            ))}
-          </ul>
+        <div className="search-card-container">
+          <div className="search-history-container">
+            <ul className="list-container">
+              {searchResult.map(eachItem => (
+                <HistoryItem
+                  initialHistoryList={eachItem}
+                  key={eachItem.id}
+                  deletHistory={this.onDeleteHistory}
+                />
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     )
